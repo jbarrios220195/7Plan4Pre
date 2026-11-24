@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizarra Digital Interactiva - Colegio Montano</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        montanoAzul: '#1269A8',
+                        montanoAmarillo: '#F7D615',
+                        montanoVerdeGris: '#54887D',
+                        montanoAzulClaro: '#88B5C7',
+                        montanoVerdeOliva: '#A6B046',
+                        montanoFondo: '#F2F5E9'
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-btn.active {
+            background-color: #1269A8;
+            color: #ffffff;
+            border-bottom: 4px solid #F7D615;
+        }
+        .tab-btn {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-montanoFondo min-h-screen font-sans text-gray-800 flex flex-col">
+
+    <!-- ENCABEZADO DE LA PIZARRA DIGITAL -->
+    <header class="bg-white shadow-md border-b-4 border-montanoAzul px-4 py-3 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- LOGO Y TÍTULO INSTITUCIONAL -->
+            <div class="flex items-center gap-3">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" 
+                     alt="Colegio Montano" 
+                     class="h-12 w-auto object-contain rounded"
+                     onerror="this.src='https://placehold.co/120x50/1269A8/FFFFFF?text=Montano'">
+                <div>
+                    <h1 class="text-xl font-bold text-montanoAzul leading-tight">Colegio Montano</h1>
+                    <p class="text-xs text-montanoVerdeGris font-semibold">Pizarra Digital Interactiva</p>
+                </div>
+            </div>
+
+            <!-- INFORMACIÓN GENERAL DEL PLAN -->
+            <div class="flex flex-wrap items-center gap-2 text-xs md:text-sm">
+                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
+                    <span class="font-bold text-montanoAzul">Curso:</span> Expresión Artística
+                </div>
+                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
+                    <span class="font-bold text-montanoAzul">Tema:</span> Escalímetro
+                </div>
+                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
+                    <span class="font-bold text-montanoAzul">Grado:</span> 4to Pre Ingeniería
+                </div>
+                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
+                    <span class="font-bold text-montanoAzul">Unidad:</span> Primera
+                </div>
+                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
+                    <span class="font-bold text-montanoAzul">Plan No.:</span> 7
+                </div>
+                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
+                    <span class="font-bold text-montanoAzul">Fecha:</span> 22 de febrero
+                </div>
+                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
+                    <span class="font-bold text-montanoAzul">Docente:</span> Jorge Barrios
+                </div>
+            </div>
+
+            <!-- BOTÓN PANTALLA COMPLETA -->
+            <button onclick="toggleFullScreen()" 
+                    class="bg-montanoAzul hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg shadow flex items-center gap-2 text-sm transition">
+                <i class="fa-solid fa-expand"></i>
+                <span class="hidden sm:inline">Pantalla Completa</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="max-w-7xl w-full mx-auto p-4 md:p-6 flex-1 flex flex-col gap-6">
+
+        <!-- MARCO PEDAGÓGICO INSTITUCIONAL (SECCIÓN SUPERIOR) -->
+        <section class="bg-white rounded-xl shadow-sm border border-montanoAzulClaro p-4 md:p-5 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs md:text-sm">
+            
+            <!-- Competencia y Logro -->
+            <div class="bg-montanoFondo p-3 rounded-lg border border-montanoAzulClaro">
+                <h3 class="font-bold text-montanoAzul mb-1 flex items-center gap-2">
+                    <i class="fa-solid fa-bullseye text-montanoAmarillo"></i> Competencia & Logro
+                </h3>
+                <p class="mb-2"><strong>Competencia:</strong> Expresa una capacidad comunicativa a través del dibujo técnico, apoyado en la generación rápida de bocetos.</p>
+                <p><strong>Indicador de logro:</strong> Comprende la importancia del lenguaje gráfico y técnico.</p>
+            </div>
+
+            <!-- Propósito Intencional -->
+            <div class="bg-montanoFondo p-3 rounded-lg border border-montanoAzulClaro">
+                <h3 class="font-bold text-montanoAzul mb-1 flex items-center gap-2">
+                    <i class="fa-solid fa-brain text-montanoVerdeGris"></i> Propósito Intencional
+                </h3>
+                <div class="flex flex-wrap gap-1 mt-2">
+                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Retención</span>
+                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Memoria</span>
+                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Atención</span>
+                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Comprensión lectora</span>
+                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Creatividad</span>
+                </div>
+            </div>
+
+            <!-- Hábitos y Competencias CM -->
+            <div class="bg-montanoFondo p-3 rounded-lg border border-montanoAzulClaro">
+                <h3 class="font-bold text-montanoAzul mb-1 flex items-center gap-2">
+                    <i class="fa-solid fa-star text-montanoVerdeOliva"></i> Hábitos y Competencias CM
+                </h3>
+                <ul class="space-y-1 text-gray-700">
+                    <li><i class="fa-solid fa-check text-montanoVerdeGris mr-1"></i> Pensamiento Crítico y Resolución de Problemas</li>
+                    <li><i class="fa-solid fa-check text-montanoVerdeGris mr-1"></i> Aprendizaje Autónomo y Adaptabilidad</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- NAVEGACIÓN POR PESTAÑAS PARA LA PIZARRA -->
+        <div class="bg-white rounded-t-xl border-b border-gray-200 flex overflow-x-auto shadow-sm">
+            <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn active px-6 py-3 font-bold text-sm md:text-base flex items-center gap-2 text-montanoAzul hover:bg-montanoFondo border-r border-gray-100 whitespace-nowrap">
+                <i class="fa-solid fa-lightbulb"></i> I) Introducción Motivante
+            </button>
+            <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn px-6 py-3 font-bold text-sm md:text-base flex items-center gap-2 text-montanoAzul hover:bg-montanoFondo border-r border-gray-100 whitespace-nowrap">
+                <i class="fa-solid fa-user-pen"></i> II) Tarea Individual
+            </button>
+            <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn px-6 py-3 font-bold text-sm md:text-base flex items-center gap-2 text-montanoAzul hover:bg-montanoFondo whitespace-nowrap">
+                <i class="fa-solid fa-users"></i> III) Plenaria
+            </button>
+        </div>
+
+        <!-- PANEL DE CONTENIDO DE LA PIZARRA -->
+        <div class="bg-white rounded-b-xl border-x border-b border-gray-200 p-6 shadow-md flex-1 flex flex-col justify-between">
+            
+            <!-- PESTAÑA 1: INTRODUCCIÓN MOTIVANTE -->
+            <div id="tab1" class="tab-content block space-y-6">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h2 class="text-xl md:text-2xl font-bold text-montanoAzul flex items-center gap-2">
+                        <i class="fa-solid fa-chalkboard-user text-montanoVerdeGris"></i> Introducción Motivante
+                    </h2>
+                    <span class="bg-montanoAmarillo text-gray-900 font-bold px-3 py-1 rounded-full text-xs md:text-sm shadow-sm">
+                        <i class="fa-regular fa-clock"></i> Tiempo: 10 minutos
+                    </span>
+                </div>
+                
+                <div class="bg-montanoFondo p-5 rounded-xl border-l-4 border-montanoAzul shadow-sm">
+                    <h3 class="font-bold text-lg text-montanoAzul mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-person-chalkboard"></i> Actividad:
+                    </h3>
+                    <p class="text-gray-800 text-base md:text-lg leading-relaxed">
+                        Presentación sobre el tema principal de la clase, el uso de diferentes escalas
+                    </p>
+                </div>
+
+                <div class="p-4 bg-white border border-montanoAzulClaro rounded-lg shadow-sm">
+                    <h4 class="font-bold text-montanoVerdeGris mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-boxes-packing"></i> Recursos:
+                    </h4>
+                    <p class="text-gray-700 text-sm md:text-base">Pizarra digital</p>
+                </div>
+            </div>
+
+            <!-- PESTAÑA 2: TAREA INDIVIDUAL -->
+            <div id="tab2" class="tab-content hidden space-y-6">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h2 class="text-xl md:text-2xl font-bold text-montanoAzul flex items-center gap-2">
+                        <i class="fa-solid fa-pen-ruler text-montanoVerdeGris"></i> Tarea Individual
+                    </h2>
+                    <span class="bg-montanoAmarillo text-gray-900 font-bold px-3 py-1 rounded-full text-xs md:text-sm shadow-sm">
+                        <i class="fa-regular fa-clock"></i> Tiempo: 45 minutos
+                    </span>
+                </div>
+
+                <div class="bg-montanoFondo p-5 rounded-xl border-l-4 border-montanoVerdeGris shadow-sm">
+                    <h3 class="font-bold text-lg text-montanoAzul mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-pen-ruler"></i> Actividad:
+                    </h3>
+                    <p class="text-gray-800 text-base md:text-lg leading-relaxed">
+                        Los estudiantes realizan en un formato A3 los ejercicios de sucesiones de líneas a diferentes escalas siendo estas ESC: 1:100, 1:125 y 1:50 a cada 1 cm y metro respectivamente.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-white border border-montanoAzulClaro rounded-lg shadow-sm">
+                    <h4 class="font-bold text-montanoVerdeGris mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-toolbox"></i> Recursos:
+                    </h4>
+                    <p class="text-gray-700 text-sm md:text-base">Lápices, tablero, rapidógrafos, regla T, escuadras, borrador, formato tamaño A3, internet, tablet o computadora.</p>
+                </div>
+            </div>
+
+            <!-- PESTAÑA 3: PLENARIA -->
+            <div id="tab3" class="tab-content hidden space-y-6">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h2 class="text-xl md:text-2xl font-bold text-montanoAzul flex items-center gap-2">
+                        <i class="fa-solid fa-comments text-montanoVerdeGris"></i> Plenaria
+                    </h2>
+                    <span class="bg-montanoAmarillo text-gray-900 font-bold px-3 py-1 rounded-full text-xs md:text-sm shadow-sm">
+                        <i class="fa-regular fa-clock"></i> Tiempo: 5 minutos
+                    </span>
+                </div>
+
+                <div class="bg-montanoFondo p-5 rounded-xl border-l-4 border-montanoVerdeOliva shadow-sm">
+                    <h3 class="font-bold text-lg text-montanoAzul mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-users-rectangle"></i> Actividad:
+                    </h3>
+                    <p class="text-gray-800 text-base md:text-lg leading-relaxed">
+                        Sinergizando entre los estudiantes, se muestran algunos trabajos terminados de la técnica aprendida.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-white border border-montanoAzulClaro rounded-lg shadow-sm">
+                    <h4 class="font-bold text-montanoVerdeGris mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-image"></i> Recursos:
+                    </h4>
+                    <p class="text-gray-700 text-sm md:text-base">Productos terminados.</p>
+                </div>
+
+                <!-- INSTRUMENTO DE EVALUACIÓN INTEGRADO EN LA PLENARIA -->
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                    <h3 class="text-lg font-bold text-montanoAzul mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-check text-montanoVerdeGris"></i> Lista de Cotejo de la Plenaria
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                            <thead>
+                                <tr class="bg-montanoAzul text-white text-xs md:text-sm">
+                                    <th class="p-3">Criterio de Evaluación</th>
+                                    <th class="p-3 text-center w-24">Cumple</th>
+                                    <th class="p-3">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 text-xs md:text-sm">
+                                <tr class="hover:bg-montanoFondo">
+                                    <td class="p-3 font-medium">1. Utiliza correctamente el escalímetro aplicando las escalas 1:100, 1:125 y 1:50 en el formato A3.</td>
+                                    <td class="p-3 text-center">
+                                        <input type="checkbox" class="w-5 h-5 text-montanoAzul rounded focus:ring-montanoAzul">
+                                    </td>
+                                    <td class="p-3">
+                                        <input type="text" placeholder="Añadir comentario..." class="w-full p-1 border rounded text-xs bg-gray-50">
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-montanoFondo">
+                                    <td class="p-3 font-medium">2. Realiza la sucesión de líneas con precisión de acuerdo a las distancias especificadas (1 cm y 1 m).</td>
+                                    <td class="p-3 text-center">
+                                        <input type="checkbox" class="w-5 h-5 text-montanoAzul rounded focus:ring-montanoAzul">
+                                    </td>
+                                    <td class="p-3">
+                                        <input type="text" placeholder="Añadir comentario..." class="w-full p-1 border rounded text-xs bg-gray-50">
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-montanoFondo">
+                                    <td class="p-3 font-medium">3. Participa activamente en la plenaria sinergizando y compartiendo sus resultados con la clase.</td>
+                                    <td class="p-3 text-center">
+                                        <input type="checkbox" class="w-5 h-5 text-montanoAzul rounded focus:ring-montanoAzul">
+                                    </td>
+                                    <td class="p-3">
+                                        <input type="text" placeholder="Añadir comentario..." class="w-full p-1 border rounded text-xs bg-gray-50">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-white border-t border-montanoAzulClaro py-3 px-4 text-center text-xs text-gray-600">
+        <p>Colegio Montano &copy; 2027 — Pizarra Digital Interactiva para Proyección en Aula</p>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // Función para cambiar de pestaña
+        function switchTab(tabId) {
+            // Ocultar todos los contenidos de pestañas
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            // Desactivar todos los botones
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Mostrar la pestaña seleccionada
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.remove('hidden');
+                selectedTab.classList.add('block');
+            }
+
+            // Activar el botón correspondiente
+            const selectedBtn = document.getElementById('btn-' + tabId);
+            if (selectedBtn) {
+                selectedBtn.classList.add('active');
+            }
+        }
+
+        // Función para cambiar a Pantalla Completa
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.error(`Error al intentar activar pantalla completa: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
