@@ -3,330 +3,737 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizarra Digital Interactiva - Colegio Montano</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Pizarra Digital - Planificación Anual Dibujo Técnico 4to Pre-Ingeniería 2027</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        montanoAzul: '#1269A8',
-                        montanoAmarillo: '#F7D615',
-                        montanoVerdeGris: '#54887D',
-                        montanoAzulClaro: '#88B5C7',
-                        montanoVerdeOliva: '#A6B046',
-                        montanoFondo: '#F2F5E9'
+                        montano: {
+                            primary: '#1F3C88',
+                            secondary: '#3F72AF',
+                            accent: '#F2C94C',
+                            dark: '#0f1c42',
+                            light: '#f4f6f9'
+                        }
                     },
                     fontFamily: {
-                        sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                        sans: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+
     <style>
-        .tab-btn.active {
-            background-color: #1269A8;
-            color: #ffffff;
-            border-bottom: 4px solid #F7D615;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+            color: #1e293b;
+            margin: 0;
+            padding: 0;
         }
-        .tab-btn {
-            transition: all 0.2s ease-in-out;
+
+        /* Estilos de pestañas */
+        .tab-active {
+            background-color: #F2C94C !important;
+            color: #1F3C88 !important;
+            font-weight: 700 !important;
+            border-bottom: 4px solid #1F3C88 !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .tab-inactive {
+            background-color: #3F72AF;
+            color: #FFFFFF;
+        }
+        .tab-inactive:hover {
+            background-color: #1F3C88;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            header {
+                position: relative !important;
+            }
+            .tab-content {
+                display: block !important;
+                page-break-after: always;
+            }
+            body {
+                background-color: white !important;
+            }
         }
     </style>
 </head>
-<body class="bg-montanoFondo min-h-screen font-sans text-gray-800 flex flex-col">
+<body class="min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <!-- ENCABEZADO DE LA PIZARRA DIGITAL -->
-    <header class="bg-white shadow-md border-b-4 border-montanoAzul px-4 py-3 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+    <!-- Header / Barra Superior Institucional -->
+    <header class="bg-montano-primary text-white p-4 shadow-xl sticky top-0 z-50 border-b-4 border-montano-accent">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
             
-            <!-- LOGO Y TÍTULO INSTITUCIONAL -->
-            <div class="flex items-center gap-3">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" 
-                     alt="Colegio Montano" 
-                     class="h-12 w-auto object-contain rounded"
-                     onerror="this.src='https://placehold.co/120x50/1269A8/FFFFFF?text=Montano'">
-                <div>
-                    <h1 class="text-xl font-bold text-montanoAzul leading-tight">Colegio Montano</h1>
-                    <p class="text-xs text-montanoVerdeGris font-semibold">Pizarra Digital Interactiva</p>
+            <!-- Escudo Institucional y Títulos -->
+            <div class="flex items-center space-x-4 w-full lg:w-auto justify-between lg:justify-start">
+                <div class="h-16 w-16 bg-white rounded-full p-1 shadow-md border-2 border-montano-accent flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <svg viewBox="0 0 200 240" class="w-full h-full">
+                        <path d="M 100 10 Q 180 20 180 100 Q 180 180 100 230 Q 20 180 20 100 Q 20 20 100 10 Z" fill="#F2C94C" stroke="#1F3C88" stroke-width="8"/>
+                        <path d="M 100 20 Q 170 30 170 100 Q 170 170 100 218 Q 30 170 30 100 Q 30 30 100 20 Z" fill="#F2C94C"/>
+                        <text x="52" y="115" font-family="Arial, sans-serif" font-weight="900" font-size="62" fill="#1F3C88">C</text>
+                        <text x="105" y="115" font-family="Arial, sans-serif" font-weight="900" font-size="62" fill="#1F3C88">M</text>
+                        <path d="M 15 170 Q 100 190 185 170 L 175 195 Q 100 215 25 195 Z" fill="#1F3C88"/>
+                        <text x="100" y="184" font-family="Arial, sans-serif" font-weight="bold" font-size="7.5" fill="#FFFFFF" text-anchor="middle">EXCELENCIA HUMANA, ACADÉMICA Y FÍSICA</text>
+                    </svg>
+                </div>
+
+                <div class="text-left">
+                    <h1 class="text-xl md:text-2xl font-extrabold tracking-wide text-white flex items-center gap-2">
+                        Colegio Montano Cortijo
+                    </h1>
+                    <p class="text-xs md:text-sm text-yellow-300 font-medium italic">
+                        Planificación Anual de Área — Dibujo Técnico (Pre-Ingeniería)
+                    </p>
                 </div>
             </div>
 
-            <!-- INFORMACIÓN GENERAL DEL PLAN -->
-            <div class="flex flex-wrap items-center gap-2 text-xs md:text-sm">
-                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
-                    <span class="font-bold text-montanoAzul">Curso:</span> Expresión Artística
+            <!-- Tarjeta de Datos Generales -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs w-full lg:w-auto bg-blue-900/60 p-3 rounded-xl border border-blue-400/40 shadow-inner">
+                <div class="p-1">
+                    <span class="block text-blue-200 text-[11px] font-semibold">Curso / Materia:</span>
+                    <span class="font-bold text-white rounded px-1">Expresión Artística - Dibujo Técnico</span>
                 </div>
-                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
-                    <span class="font-bold text-montanoAzul">Tema:</span> Escalímetro
+                <div class="p-1 border-l border-blue-700/50 pl-2">
+                    <span class="block text-blue-200 text-[11px] font-semibold">Grado y Orientación:</span>
+                    <span class="font-bold text-white rounded px-1">4to. Bachillerato Pre Ingeniería</span>
                 </div>
-                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
-                    <span class="font-bold text-montanoAzul">Grado:</span> 4to Pre Ingeniería
+                <div class="p-1 border-l border-blue-700/50 pl-2">
+                    <span class="block text-blue-200 text-[11px] font-semibold">Docente:</span>
+                    <span class="font-bold text-white rounded px-1">Prof. Jorge Barrios</span>
                 </div>
-                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
-                    <span class="font-bold text-montanoAzul">Unidad:</span> Primera
-                </div>
-                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
-                    <span class="font-bold text-montanoAzul">Plan No.:</span> 7
-                </div>
-                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
-                    <span class="font-bold text-montanoAzul">Fecha:</span> 22 de febrero
-                </div>
-                <div class="bg-montanoFondo px-3 py-1.5 rounded-lg border border-montanoAzulClaro font-medium text-gray-700">
-                    <span class="font-bold text-montanoAzul">Docente:</span> Jorge Barrios
+                <div class="p-1 border-l border-blue-700/50 pl-2">
+                    <span class="block text-blue-200 text-[11px] font-semibold">Ciclo Escolar:</span>
+                    <span class="font-bold text-white rounded px-1">Plan Anual 2027</span>
                 </div>
             </div>
 
-            <!-- BOTÓN PANTALLA COMPLETA -->
-            <button onclick="toggleFullScreen()" 
-                    class="bg-montanoAzul hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg shadow flex items-center gap-2 text-sm transition">
-                <i class="fa-solid fa-expand"></i>
-                <span class="hidden sm:inline">Pantalla Completa</span>
-            </button>
+            <!-- Botón Único de Pantalla Completa -->
+            <div class="flex items-center gap-2 w-full lg:w-auto justify-end no-print">
+                <button onclick="toggleFullscreen()" class="bg-montano-accent text-montano-primary hover:bg-yellow-400 font-extrabold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2 shadow-md hover:shadow-lg transform active:scale-95">
+                    <span>🖥️</span> Pantalla Completa
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL -->
-    <main class="max-w-7xl w-full mx-auto p-4 md:p-6 flex-1 flex flex-col gap-6">
-
-        <!-- MARCO PEDAGÓGICO INSTITUCIONAL (SECCIÓN SUPERIOR) -->
-        <section class="bg-white rounded-xl shadow-sm border border-montanoAzulClaro p-4 md:p-5 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs md:text-sm">
-            
-            <!-- Competencia y Logro -->
-            <div class="bg-montanoFondo p-3 rounded-lg border border-montanoAzulClaro">
-                <h3 class="font-bold text-montanoAzul mb-1 flex items-center gap-2">
-                    <i class="fa-solid fa-bullseye text-montanoAmarillo"></i> Competencia & Logro
-                </h3>
-                <p class="mb-2"><strong>Competencia:</strong> Expresa una capacidad comunicativa a través del dibujo técnico, apoyado en la generación rápida de bocetos.</p>
-                <p><strong>Indicador de logro:</strong> Comprende la importancia del lenguaje gráfico y técnico.</p>
-            </div>
-
-            <!-- Propósito Intencional -->
-            <div class="bg-montanoFondo p-3 rounded-lg border border-montanoAzulClaro">
-                <h3 class="font-bold text-montanoAzul mb-1 flex items-center gap-2">
-                    <i class="fa-solid fa-brain text-montanoVerdeGris"></i> Propósito Intencional
-                </h3>
-                <div class="flex flex-wrap gap-1 mt-2">
-                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Retención</span>
-                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Memoria</span>
-                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Atención</span>
-                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Comprensión lectora</span>
-                    <span class="px-2 py-0.5 rounded bg-gray-200 text-gray-500 line-through">Creatividad</span>
-                </div>
-            </div>
-
-            <!-- Hábitos y Competencias CM -->
-            <div class="bg-montanoFondo p-3 rounded-lg border border-montanoAzulClaro">
-                <h3 class="font-bold text-montanoAzul mb-1 flex items-center gap-2">
-                    <i class="fa-solid fa-star text-montanoVerdeOliva"></i> Hábitos y Competencias CM
-                </h3>
-                <ul class="space-y-1 text-gray-700">
-                    <li><i class="fa-solid fa-check text-montanoVerdeGris mr-1"></i> Pensamiento Crítico y Resolución de Problemas</li>
-                    <li><i class="fa-solid fa-check text-montanoVerdeGris mr-1"></i> Aprendizaje Autónomo y Adaptabilidad</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- NAVEGACIÓN POR PESTAÑAS PARA LA PIZARRA -->
-        <div class="bg-white rounded-t-xl border-b border-gray-200 flex overflow-x-auto shadow-sm">
-            <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn active px-6 py-3 font-bold text-sm md:text-base flex items-center gap-2 text-montanoAzul hover:bg-montanoFondo border-r border-gray-100 whitespace-nowrap">
-                <i class="fa-solid fa-lightbulb"></i> I) Introducción Motivante
+    <!-- Navegación por Pestañas Horizontales -->
+    <nav class="bg-slate-200 shadow-inner border-b border-gray-300 overflow-x-auto no-print sticky top-[76px] z-40">
+        <div class="max-w-7xl mx-auto flex space-x-1 p-2 min-w-max">
+            <button onclick="openTab('tab1')" id="btn-tab1" class="tab-button tab-active px-4 py-2.5 rounded-t-xl text-xs md:text-sm transition flex items-center gap-1">
+                <span>📖</span> I) Descriptor
             </button>
-            <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn px-6 py-3 font-bold text-sm md:text-base flex items-center gap-2 text-montanoAzul hover:bg-montanoFondo border-r border-gray-100 whitespace-nowrap">
-                <i class="fa-solid fa-user-pen"></i> II) Tarea Individual
+            <button onclick="openTab('tab2')" id="btn-tab2" class="tab-button tab-inactive px-4 py-2.5 rounded-t-xl text-xs md:text-sm transition flex items-center gap-1">
+                <span>🎯</span> II) Objetivos
             </button>
-            <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn px-6 py-3 font-bold text-sm md:text-base flex items-center gap-2 text-montanoAzul hover:bg-montanoFondo whitespace-nowrap">
-                <i class="fa-solid fa-users"></i> III) Plenaria
+            <button onclick="openTab('tab3')" id="btn-tab3" class="tab-button tab-inactive px-4 py-2.5 rounded-t-xl text-xs md:text-sm transition flex items-center gap-1">
+                <span>📐</span> III) Competencias
+            </button>
+            <button onclick="openTab('tab4')" id="btn-tab4" class="tab-button tab-inactive px-4 py-2.5 rounded-t-xl text-xs md:text-sm transition flex items-center gap-1">
+                <span>📊</span> IV) Indicadores
+            </button>
+            <button onclick="openTab('tab5')" id="btn-tab5" class="tab-button tab-inactive px-4 py-2.5 rounded-t-xl text-xs md:text-sm transition flex items-center gap-1">
+                <span>🧩</span> V) Métodos Didácticos
+            </button>
+            <button onclick="openTab('tab6')" id="btn-tab6" class="tab-button tab-inactive px-4 py-2.5 rounded-t-xl text-xs md:text-sm transition flex items-center gap-1">
+                <span>📚</span> VI) Bibliografía
+            </button>
+            <button onclick="openTab('tab7')" id="btn-tab7" class="tab-button tab-inactive px-4 py-2.5 rounded-t-xl text-xs md:text-sm transition flex items-center gap-1">
+                <span>🗓️</span> VII) Contenidos (4 Unidades)
             </button>
         </div>
+    </nav>
 
-        <!-- PANEL DE CONTENIDO DE LA PIZARRA -->
-        <div class="bg-white rounded-b-xl border-x border-b border-gray-200 p-6 shadow-md flex-1 flex flex-col justify-between">
-            
-            <!-- PESTAÑA 1: INTRODUCCIÓN MOTIVANTE -->
-            <div id="tab1" class="tab-content block space-y-6">
-                <div class="flex items-center justify-between border-b pb-3">
-                    <h2 class="text-xl md:text-2xl font-bold text-montanoAzul flex items-center gap-2">
-                        <i class="fa-solid fa-chalkboard-user text-montanoVerdeGris"></i> Introducción Motivante
+    <!-- Área de Contenido Principal -->
+    <main class="max-w-7xl mx-auto p-4 md:p-6 flex-grow w-full z-10">
+
+        <!-- Pestaña I: Descriptor del Curso -->
+        <div id="tab1" class="tab-content block space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border-l-8 border-montano-primary">
+                <div class="flex justify-between items-center mb-4 pb-2 border-b">
+                    <h2 class="text-xl md:text-2xl font-bold text-montano-primary italic">
+                        I) Descriptor del Curso — Dibujo Técnico
                     </h2>
-                    <span class="bg-montanoAmarillo text-gray-900 font-bold px-3 py-1 rounded-full text-xs md:text-sm shadow-sm">
-                        <i class="fa-regular fa-clock"></i> Tiempo: 10 minutos
-                    </span>
+                    <span class="text-xs bg-blue-100 text-montano-primary font-bold px-3 py-1 rounded-full">Pre Ingeniería 2027</span>
                 </div>
-                
-                <div class="bg-montanoFondo p-5 rounded-xl border-l-4 border-montanoAzul shadow-sm">
-                    <h3 class="font-bold text-lg text-montanoAzul mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-person-chalkboard"></i> Actividad:
-                    </h3>
-                    <p class="text-gray-800 text-base md:text-lg leading-relaxed">
-                        Presentación sobre el tema principal de la clase, el uso de diferentes escalas
+
+                <div class="text-gray-700 leading-relaxed space-y-3 text-sm md:text-base">
+                    <p>
+                        El dibujo es imprescindible como medio de comunicación en cualquier proceso de investigación o proyecto técnico en donde se hace uso de elementos visuales, ideas y de otras formas para definir lo que se está diseñando, creando o produciendo.
+                    </p>
+                    <p>
+                        El Dibujo Técnico surge en la cultura universal como un medio de expresión y comunicación indispensable, tanto para el desarrollo de procesos de investigación sobre las formas, como para la comprensión gráfica de bocetos y proyectos tecnológicos y artísticos, cuyo último fin sea la creación de productos que puedan tener un valor utilitario, artístico, o ambos a la vez.
+                    </p>
+                    <p>
+                        La función esencial de la comprensión de estos temas consiste en ayudar a formalizar o visualizar lo que se está diseñando o creando y contribuye a proporcionar, desde una primera concreción de posibles soluciones, hasta la última fase del desarrollo donde se presentan los resultados en dibujos definitivamente acabados.
+                    </p>
+                    <p>
+                        Es necesario el conocimiento de un conjunto de convencionalismos que están recogidos en las normas para el Dibujo Técnico, que se establecen en un ámbito nacional e internacional. La materia favorece la capacidad de abstracción para la comprensión de numerosos trazos y convencionalismos, lo que la convierte en una valiosa ayuda formativa de carácter general.
+                    </p>
+                    <p>
+                        El aprendizaje es un proceso eminentemente práctico, para lo cual se procurará diseñar las actividades desde la teoría con el fin de que sean desarrolladas por las y los estudiantes de forma práctica. Es necesario que se comprendan, no sólo los principios geométricos fundamentales, sino también el saber aplicarlos en todos aquellos campos técnico-profesionales que se utilizan en la práctica.
                     </p>
                 </div>
 
-                <div class="p-4 bg-white border border-montanoAzulClaro rounded-lg shadow-sm">
-                    <h4 class="font-bold text-montanoVerdeGris mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-boxes-packing"></i> Recursos:
-                    </h4>
-                    <p class="text-gray-700 text-sm md:text-base">Pizarra digital</p>
-                </div>
-            </div>
-
-            <!-- PESTAÑA 2: TAREA INDIVIDUAL -->
-            <div id="tab2" class="tab-content hidden space-y-6">
-                <div class="flex items-center justify-between border-b pb-3">
-                    <h2 class="text-xl md:text-2xl font-bold text-montanoAzul flex items-center gap-2">
-                        <i class="fa-solid fa-pen-ruler text-montanoVerdeGris"></i> Tarea Individual
-                    </h2>
-                    <span class="bg-montanoAmarillo text-gray-900 font-bold px-3 py-1 rounded-full text-xs md:text-sm shadow-sm">
-                        <i class="fa-regular fa-clock"></i> Tiempo: 45 minutos
-                    </span>
-                </div>
-
-                <div class="bg-montanoFondo p-5 rounded-xl border-l-4 border-montanoVerdeGris shadow-sm">
-                    <h3 class="font-bold text-lg text-montanoAzul mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-pen-ruler"></i> Actividad:
+                <div class="mt-8">
+                    <h3 class="text-lg font-bold text-montano-secondary italic mb-4 flex items-center gap-2">
+                        <span>🛡️</span> Valores y Creencias Institucionales Promovidos (10 Principios CM)
                     </h3>
-                    <p class="text-gray-800 text-base md:text-lg leading-relaxed">
-                        Los estudiantes realizan en un formato A3 los ejercicios de sucesiones de líneas a diferentes escalas siendo estas ESC: 1:100, 1:125 y 1:50 a cada 1 cm y metro respectivamente.
-                    </p>
-                </div>
-
-                <div class="p-4 bg-white border border-montanoAzulClaro rounded-lg shadow-sm">
-                    <h4 class="font-bold text-montanoVerdeGris mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-toolbox"></i> Recursos:
-                    </h4>
-                    <p class="text-gray-700 text-sm md:text-base">Lápices, tablero, rapidógrafos, regla T, escuadras, borrador, formato tamaño A3, internet, tablet o computadora.</p>
-                </div>
-            </div>
-
-            <!-- PESTAÑA 3: PLENARIA -->
-            <div id="tab3" class="tab-content hidden space-y-6">
-                <div class="flex items-center justify-between border-b pb-3">
-                    <h2 class="text-xl md:text-2xl font-bold text-montanoAzul flex items-center gap-2">
-                        <i class="fa-solid fa-comments text-montanoVerdeGris"></i> Plenaria
-                    </h2>
-                    <span class="bg-montanoAmarillo text-gray-900 font-bold px-3 py-1 rounded-full text-xs md:text-sm shadow-sm">
-                        <i class="fa-regular fa-clock"></i> Tiempo: 5 minutos
-                    </span>
-                </div>
-
-                <div class="bg-montanoFondo p-5 rounded-xl border-l-4 border-montanoVerdeOliva shadow-sm">
-                    <h3 class="font-bold text-lg text-montanoAzul mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-users-rectangle"></i> Actividad:
-                    </h3>
-                    <p class="text-gray-800 text-base md:text-lg leading-relaxed">
-                        Sinergizando entre los estudiantes, se muestran algunos trabajos terminados de la técnica aprendida.
-                    </p>
-                </div>
-
-                <div class="p-4 bg-white border border-montanoAzulClaro rounded-lg shadow-sm">
-                    <h4 class="font-bold text-montanoVerdeGris mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-image"></i> Recursos:
-                    </h4>
-                    <p class="text-gray-700 text-sm md:text-base">Productos terminados.</p>
-                </div>
-
-                <!-- INSTRUMENTO DE EVALUACIÓN INTEGRADO EN LA PLENARIA -->
-                <div class="mt-6 pt-4 border-t border-gray-200">
-                    <h3 class="text-lg font-bold text-montanoAzul mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-clipboard-check text-montanoVerdeGris"></i> Lista de Cotejo de la Plenaria
-                    </h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
-                            <thead>
-                                <tr class="bg-montanoAzul text-white text-xs md:text-sm">
-                                    <th class="p-3">Criterio de Evaluación</th>
-                                    <th class="p-3 text-center w-24">Cumple</th>
-                                    <th class="p-3">Observaciones</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200 text-xs md:text-sm">
-                                <tr class="hover:bg-montanoFondo">
-                                    <td class="p-3 font-medium">1. Utiliza correctamente el escalímetro aplicando las escalas 1:100, 1:125 y 1:50 en el formato A3.</td>
-                                    <td class="p-3 text-center">
-                                        <input type="checkbox" class="w-5 h-5 text-montanoAzul rounded focus:ring-montanoAzul">
-                                    </td>
-                                    <td class="p-3">
-                                        <input type="text" placeholder="Añadir comentario..." class="w-full p-1 border rounded text-xs bg-gray-50">
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-montanoFondo">
-                                    <td class="p-3 font-medium">2. Realiza la sucesión de líneas con precisión de acuerdo a las distancias especificadas (1 cm y 1 m).</td>
-                                    <td class="p-3 text-center">
-                                        <input type="checkbox" class="w-5 h-5 text-montanoAzul rounded focus:ring-montanoAzul">
-                                    </td>
-                                    <td class="p-3">
-                                        <input type="text" placeholder="Añadir comentario..." class="w-full p-1 border rounded text-xs bg-gray-50">
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-montanoFondo">
-                                    <td class="p-3 font-medium">3. Participa activamente en la plenaria sinergizando y compartiendo sus resultados con la clase.</td>
-                                    <td class="p-3 text-center">
-                                        <input type="checkbox" class="w-5 h-5 text-montanoAzul rounded focus:ring-montanoAzul">
-                                    </td>
-                                    <td class="p-3">
-                                        <input type="text" placeholder="Añadir comentario..." class="w-full p-1 border rounded text-xs bg-gray-50">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div id="valores-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+                        <!-- Generado Dinámicamente -->
                     </div>
                 </div>
             </div>
-
         </div>
+
+        <!-- Pestaña II: Objetivos Generales -->
+        <div id="tab2" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border-l-8 border-montano-primary">
+                <div class="flex justify-between items-center mb-6 pb-2 border-b">
+                    <h2 class="text-xl md:text-2xl font-bold text-montano-primary italic">
+                        II) Objetivos Generales
+                    </h2>
+                </div>
+
+                <div id="objetivos-list" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Objetivos insertados dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña III: Competencias -->
+        <div id="tab3" class="tab-content hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Competencias Académicas del Área -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-montano-primary flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4 pb-2 border-b">
+                            <h2 class="text-lg md:text-xl font-bold text-montano-primary italic">
+                                Competencias Académicas del Área (Dibujo Técnico)
+                            </h2>
+                        </div>
+                        <div id="competencias-academicas-list" class="space-y-3">
+                            <!-- Dinámico -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Competencias Blandas (Pre-Ingeniería / CM) -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-montano-secondary">
+                    <div class="mb-4 pb-2 border-b">
+                        <h2 class="text-lg md:text-xl font-bold text-montano-secondary italic">
+                            Competencias Blandas Institucionales
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-1">
+                            Destacadas en la planificación del programa de Pre-Ingeniería:
+                        </p>
+                    </div>
+                    
+                    <div id="competencias-blandas-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <!-- Competencias blandas -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Pestaña IV: Indicadores de Logro -->
+        <div id="tab4" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border-l-8 border-montano-primary">
+                <div class="flex justify-between items-center mb-6 pb-2 border-b">
+                    <h2 class="text-xl md:text-2xl font-bold text-montano-primary italic">
+                        IV) Indicadores de Logro
+                    </h2>
+                </div>
+
+                <div id="indicadores-container" class="space-y-6">
+                    <!-- Dinámico por Competencias -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña V: Métodos Didácticos -->
+        <div id="tab5" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border-l-8 border-montano-primary">
+                <h2 class="text-xl md:text-2xl font-bold text-montano-primary italic mb-1">
+                    V) Métodos Didácticos (Modelo Institucional - Período Doble 80 Minutos)
+                </h2>
+                <p class="text-xs md:text-sm text-gray-600 mb-6 italic">
+                    Los métodos que se usan para el proceso enseñanza-aprendizaje promueven la participación y la cooperación activa entre compañeros.
+                </p>
+
+                <!-- 4 Momentos Metodológicos de 80 Minutos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="p-4 bg-blue-50/70 border-l-4 border-montano-primary rounded-r-xl shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-montano-primary text-white font-extrabold text-xs px-2 py-1 rounded">1</span>
+                            <h3 class="font-bold text-montano-primary text-sm italic">
+                                Introducción Motivante (Activación de Presaberes)
+                            </h3>
+                        </div>
+                        <p class="text-xs text-gray-700 leading-relaxed">
+                            Este paso del proceso tiene como función activar el pre-saber del alumno; al maestro le permite determinar un diagnóstico mediante cantos, discusiones, adivinanzas, lluvia de ideas y juegos pedagógicos.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-blue-50/70 border-l-4 border-montano-primary rounded-r-xl shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-montano-primary text-white font-extrabold text-xs px-2 py-1 rounded">2</span>
+                            <h3 class="font-bold text-montano-primary text-sm italic">
+                                Trabajo Individual (Desarrollo de Potencialidad)
+                            </h3>
+                        </div>
+                        <p class="text-xs text-gray-700 leading-relaxed">
+                            El alumno pone en el lugar de trabajo toda su potencialidad como individuo, sus habilidades y destrezas para ejecutar trazos técnicos con instrumentos utilizando trifolios, proyectos, carteles y estudio dirigido.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-blue-50/70 border-l-4 border-montano-primary rounded-r-xl shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-montano-primary text-white font-extrabold text-xs px-2 py-1 rounded">3</span>
+                            <h3 class="font-bold text-montano-primary text-sm italic">
+                                Trabajo en Equipo / Cooperativo
+                            </h3>
+                        </div>
+                        <p class="text-xs text-gray-700 leading-relaxed">
+                            El alumno trabaja interactuando con sus compañeros desempeñando un rol bajo la consigna <i>"Todos para uno y uno para todos"</i>, unificando sus destrezas individuales con la de todos los integrantes del grupo.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-blue-50/70 border-l-4 border-montano-primary rounded-r-xl shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-montano-primary text-white font-extrabold text-xs px-2 py-1 rounded">4</span>
+                            <h3 class="font-bold text-montano-primary text-sm italic">
+                                Plenaria y Exposición Rotativa
+                            </h3>
+                        </div>
+                        <p class="text-xs text-gray-700 leading-relaxed">
+                            Los alumnos fomentan el hablar en público, exponer sus sentimientos y emociones ante el grupo y explicar sus conclusiones gráficas. Se hace en forma rotativa para experimentar el rol del expositor.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Evaluación y Constructivismo -->
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs md:text-sm space-y-3 text-gray-700 mb-6">
+                    <div>
+                        <b class="text-montano-primary">Evaluación Formativa & Sumativa:</b>
+                        <p class="mt-1">
+                            Durante todo el proceso se manifiesta la evaluación formativa desde el inicio hasta el final de la jornada. Observamos habilidades, estimulamos áreas con dificultad y promovemos competencias. La evaluación sumativa se organiza en tareas, ejercicios, exámenes cortos, tarea integrada y proyecto.
+                        </p>
+                    </div>
+                    <hr class="border-gray-200">
+                    <div>
+                        <b class="text-montano-primary">Enfoque Constructivista:</b>
+                        <p class="mt-1">
+                            Promovemos que los alumnos construyan su propio aprendizaje utilizando herramientas y técnicas de dibujo que les permitan alcanzar un aprendizaje significativo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Principios de Convivencia Intra-Aula -->
+                <div class="mt-6">
+                    <h3 class="text-md font-bold text-montano-primary mb-3 italic">
+                        Valores y Principios de Trabajo de Convivencia Intra-Aula:
+                    </h3>
+                    <div id="valores-trabajo-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                        <!-- 8 valores de trabajo -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña VI: Bibliografía -->
+        <div id="tab6" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border-l-8 border-montano-primary">
+                <div class="flex justify-between items-center mb-4 pb-2 border-b">
+                    <h2 class="text-xl md:text-2xl font-bold text-montano-primary italic">
+                        VI) Bibliografía y Fuentes Tecnológicas
+                    </h2>
+                </div>
+
+                <div id="bibliografia-list" class="space-y-3 text-sm text-gray-700">
+                    <!-- Lista Dinámica -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña VII: Secuencia de Contenidos por Unidades (4 Unidades Completas) -->
+        <div id="tab7" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border-l-8 border-montano-primary">
+                
+                <!-- Encabezado y Selector de Unidades -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b">
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-montano-primary italic">
+                            VII) Secuencia de Contenidos (Malla Anual 2027)
+                        </h2>
+                        <p class="text-xs text-gray-500">Haz clic en cada unidad para visualizar sus 7 temas oficiales.</p>
+                    </div>
+
+                    <!-- Selector de Unidades (I, II, III, IV) -->
+                    <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-300 self-stretch sm:self-auto">
+                        <button onclick="switchUnit(1)" id="unit-btn-1" class="unit-tab px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-montano-primary text-white shadow">Unidad I</button>
+                        <button onclick="switchUnit(2)" id="unit-btn-2" class="unit-tab px-3.5 py-1.5 rounded-lg text-xs font-bold text-gray-600 hover:text-montano-primary transition">Unidad II</button>
+                        <button onclick="switchUnit(3)" id="unit-btn-3" class="unit-tab px-3.5 py-1.5 rounded-lg text-xs font-bold text-gray-600 hover:text-montano-primary transition">Unidad III</button>
+                        <button onclick="switchUnit(4)" id="unit-btn-4" class="unit-tab px-3.5 py-1.5 rounded-lg text-xs font-bold text-gray-600 hover:text-montano-primary transition">Unidad IV</button>
+                    </div>
+                </div>
+
+                <!-- Panel de Contenido de la Unidad Activa -->
+                <div id="unit-container" class="bg-blue-50/50 p-5 rounded-2xl border border-blue-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                        <h3 id="unit-title" class="text-lg font-bold text-montano-primary flex items-center gap-2 italic">
+                            <span>📐</span> PRIMERA UNIDAD — Fundamentos y Trazos Técnicos
+                        </h3>
+                    </div>
+
+                    <!-- Grid de Sesiones / Temas -->
+                    <div id="sesiones-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                        <!-- Renderizado Dinámico -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </main>
 
-    <!-- PIE DE PÁGINA -->
-    <footer class="bg-white border-t border-montanoAzulClaro py-3 px-4 text-center text-xs text-gray-600">
-        <p>Colegio Montano &copy; 2027 — Pizarra Digital Interactiva para Proyección en Aula</p>
+    <!-- Modal de Detalle de Sesión/Tema (Solo Lectura) -->
+    <div id="session-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border-t-8 border-montano-accent animate-fadeIn">
+            <div class="flex justify-between items-center mb-4 pb-2 border-b">
+                <h3 id="modal-title" class="text-lg font-bold text-montano-primary">Detalle de la Sesión de Dibujo</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-700 font-bold text-lg">✕</button>
+            </div>
+            
+            <div class="space-y-4 text-xs md:text-sm">
+                <div>
+                    <span class="block text-gray-500 font-bold mb-1">Nombre del Tema / Figura:</span>
+                    <p id="modal-view-name" class="font-bold text-gray-800 text-base italic"></p>
+                </div>
+                <div>
+                    <span class="block text-gray-500 font-bold mb-1">Descripción / Propósito Técnico:</span>
+                    <p id="modal-view-desc" class="text-gray-700 bg-slate-50 p-3 rounded-lg border border-slate-200 leading-relaxed"></p>
+                </div>
+                <div>
+                    <span class="block text-gray-500 font-bold mb-1">Instrumentos y Formatos Necesarios:</span>
+                    <p id="modal-view-materials" class="text-montano-primary font-semibold bg-blue-50 p-2.5 rounded-lg border border-blue-100"></p>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeModal()" class="px-5 py-2 bg-montano-primary hover:bg-blue-900 text-white font-bold text-xs rounded-xl transition shadow">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Institucional -->
+    <footer class="bg-montano-primary text-white text-center py-4 text-xs mt-auto border-t-2 border-montano-accent">
+        <p class="font-medium"><i>Colegio Montano Cortijo — Planificación de Expresión Artística (Pre-Ingeniería) 2027</i></p>
+        <p class="text-[10px] text-blue-200 mt-0.5"><i>Excelencia Humana, Académica y Física</i></p>
     </footer>
 
-    <!-- LÓGICA JAVASCRIPT -->
+    <!-- Lógica JS -->
     <script>
-        // Función para cambiar de pestaña
-        function switchTab(tabId) {
-            // Ocultar todos los contenidos de pestañas
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => {
-                content.classList.add('hidden');
-                content.classList.remove('block');
-            });
+        let activeUnit = 1;
 
-            // Desactivar todos los botones
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            tabButtons.forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Mostrar la pestaña seleccionada
-            const selectedTab = document.getElementById(tabId);
-            if (selectedTab) {
-                selectedTab.classList.remove('hidden');
-                selectedTab.classList.add('block');
+        const appData = {
+            descriptor: {
+                valores: [
+                    "El alumno tiene la libertad de decisión con la responsabilidad de las mismas.",
+                    "Los estudiantes desarrollan la lealtad y la identificación con su institución educativa.",
+                    "Demuestra empatía, respeta diversas opiniones y actúa de acuerdo a los parámetros esperados al trabajar en equipo.",
+                    "El trabajo dentro del aula se desarrolla en armonía y respeto entre compañeros y hacia el docente.",
+                    "Ampliación del conocimiento sobre la pluriculturalidad e interculturalidad para desarrollar tolerancia.",
+                    "Desarrollo de la capacidad de análisis y síntesis para reflexionar y argumentar la información.",
+                    "Análisis crítico y construcción de ideas propias puestas en práctica en los cuatro momentos CM.",
+                    "Integración del conocimiento del dibujo con otras áreas académicas e ingenieriles.",
+                    "Muestra de empatía por la diversidad cultural de Guatemala y la comunidad local.",
+                    "Uso y manejo de herramientas digitales como Edoo, Canvas y apoyo multimedia para afianzar el aprendizaje."
+                ]
+            },
+            objetivos: [
+                "Utilizar las formas básicas y elementos compositivos fundamentales simples y complejas en el área del dibujo.",
+                "Aplicar los fundamentos del dibujo para crear figuras y formas geométricas.",
+                "Emplear el sistema de vistas y proyecciones para imaginar, crear y representar formas y figuras geométricas en un plano."
+            ],
+            competencias: {
+                academicas: [
+                    "Conoce sus instrumentos de dibujo, las generalidades del dibujo técnico y los trazos básicos en un plano.",
+                    "Elabora figuras en un plano con la ayuda de sus instrumentos de dibujo.",
+                    "Desarrolla por medio del dibujo técnico las proyecciones y diferentes vistas de una figura o forma geométrica."
+                ],
+                blandas: [
+                    { name: "Creatividad", selected: true },
+                    { name: "Pensamiento crítico", selected: true },
+                    { name: "Resolución de problemas complejos", selected: true },
+                    { name: "Colaboración y trabajo en equipo", selected: true },
+                    { name: "Comunicación efectiva", selected: true },
+                    { name: "Aprendizaje autónomo y adaptabilidad", selected: true }
+                ]
+            },
+            indicadores: [
+                {
+                    titulo: "Para Competencia 1: Instrumentos, generalidades y trazos básicos",
+                    items: [
+                        "Comprende la importancia del lenguaje gráfico y técnico.",
+                        "Utiliza correctamente los aspectos básicos del dibujo técnico en un formato.",
+                        "Identifica el uso de cada uno de sus instrumentos profesionales de dibujo."
+                    ]
+                },
+                {
+                    titulo: "Para Competencia 2: Elaboración de figuras en plano",
+                    items: [
+                        "Crea figuras volumétricas en un plano utilizando sus instrumentos de dibujo.",
+                        "Ejecuta con precisión distintos trazos geométricos en un plano."
+                    ]
+                },
+                {
+                    titulo: "Para Competencia 3: Proyecciones y vistas ortogonales",
+                    items: [
+                        "Elabora proyecciones ortogonales en un plano.",
+                        "Realiza vistas ortogonales de una figura geométrica en un plano."
+                    ]
+                }
+            ],
+            valoresTrabajo: [
+                "Tolerancia a diferentes formas de pensar",
+                "Trabajar siempre en equipo",
+                "Amistad laboral entre el personal",
+                "Lealtad e identificación con el Colegio",
+                "Colaboración con compañeros y Colegio",
+                "Generosidad",
+                "Solidaridad",
+                "Calidad en todo lo que hacemos"
+            ],
+            bibliografia: [
+                "Método práctico de dibujo técnico, Arq. Nery William García, 2010."
+            ],
+            contenidos: {
+                1: [
+                    { name: "Marginado", desc: "Trazos de márgenes estandarizados en formato de dibujo técnico.", materials: "Formato, Regla T, Lápiz 2H" },
+                    { name: "Rotulado técnico", desc: "Letra técnica estandarizada según normas internacionales.", materials: "Guía de rotulación, Portaminas" },
+                    { name: "Formato de Trazos", desc: "Líneas guías, contornos, líneas ocultas y de eje.", materials: "Juego de escuadras" },
+                    { name: "Ángulos", desc: "Construcción y medición de ángulos en el plano.", materials: "Transportador, escuadras" },
+                    { name: "Uso de Escuadras", desc: "Trazos paralelos, perpendiculares y ángulos combinados.", materials: "Escuadras 45° y 30°/60°" },
+                    { name: "Logro 1 – Patrones visuales", desc: "Aplicación de patrones geométricos y ritmo visual.", materials: "Formatos impresos, estilógrafos" },
+                    { name: "Uso de Escalímetro", desc: "Manejo de escalas arquitectónicas e ingenieriles.", materials: "Escalímetro profesional" }
+                ],
+                2: [
+                    { name: "Figura 1", desc: "Construcción geométrica plana y volumen básico 1.", materials: "Instrumentos de precisión" },
+                    { name: "Figura 2", desc: "Construcción geométrica plana y volumen básico 2.", materials: "Formatos normados" },
+                    { name: "Figura 3", desc: "Construcción geométrica plana y volumen básico 3.", materials: "Escuadras y compás" },
+                    { name: "Figura 4", desc: "Construcción geométrica plana y volumen básico 4.", materials: "Lápices técnicos" },
+                    { name: "Figura 5", desc: "Construcción geométrica compleja 5.", materials: "Instrumentos de dibujo" },
+                    { name: "Figura 6", desc: "Construcción geométrica compleja 6.", materials: "Formatos y entintado" },
+                    { name: "Figura 7", desc: "Construcción geométrica compleja 7.", materials: "Instrumentos de precisión" }
+                ],
+                3: [
+                    { name: "Figura 9", desc: "Proyecciones isométricas y vistas ortogonales 9.", materials: "Escuadra de 30°/60°" },
+                    { name: "Figura 10", desc: "Proyecciones isométricas y vistas ortogonales 10.", materials: "Formatos normados" },
+                    { name: "Figura 11", desc: "Proyecciones isométricas y vistas ortogonales 11.", materials: "Lápiz HB y 2H" },
+                    { name: "Figura 12", desc: "Proyecciones isométricas y vistas ortogonales 12.", materials: "Instrumentos técnicos" },
+                    { name: "Figura 13", desc: "Desarrollo de volumen y vistas de plano 13.", materials: "Escuadras y compás" },
+                    { name: "Figura 14", desc: "Desarrollo de volumen y vistas de plano 14.", materials: "Formatos normados" },
+                    { name: "Figura 15", desc: "Desarrollo de volumen y vistas de plano 15.", materials: "Entintado final" }
+                ],
+                4: [
+                    { name: "Figura 17", desc: "Proyecciones avanzadas y vistas múltiples 17.", materials: "Set completo de dibujo" },
+                    { name: "Figura 18", desc: "Proyecciones avanzadas y vistas múltiples 18.", materials: "Formatos normados" },
+                    { name: "Figura 19", desc: "Proyecciones avanzadas y vistas múltiples 19.", materials: "Escuadras e instrumentos" },
+                    { name: "Figura 20", desc: "Proyecciones avanzadas y vistas múltiples 20.", materials: "Formatos de lámina" },
+                    { name: "Figura 21", desc: "Proyecto final de dibujo técnico e ingeniería 21.", materials: "Formatos y acabados" },
+                    { name: "Figura 22", desc: "Proyecto final de dibujo técnico e ingeniería 22.", materials: "Formatos de lámina" },
+                    { name: "Figura 23", desc: "Evaluación integradora y presentación de láminas 23.", materials: "Entrega final de láminas" }
+                ]
             }
+        };
 
-            // Activar el botón correspondiente
-            const selectedBtn = document.getElementById('btn-' + tabId);
-            if (selectedBtn) {
-                selectedBtn.classList.add('active');
-            }
+        window.addEventListener('DOMContentLoaded', () => {
+            renderAll();
+        });
+
+        function renderAll() {
+            renderDescriptor();
+            renderObjetivos();
+            renderCompetencias();
+            renderIndicadores();
+            renderValoresTrabajo();
+            renderBibliografia();
+            renderContenidos();
         }
 
-        // Función para cambiar a Pantalla Completa
-        function toggleFullScreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {
-                    console.error(`Error al intentar activar pantalla completa: ${err.message}`);
-                });
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
+        function renderDescriptor() {
+            const valGrid = document.getElementById('valores-grid');
+            valGrid.innerHTML = appData.descriptor.valores.map((v, i) => `
+                <div class="bg-blue-50/70 p-3 rounded-xl border border-blue-100 flex items-start">
+                    <span class="text-gray-800">
+                        <b>${i + 1}.</b> <i>${v}</i>
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function renderObjetivos() {
+            const list = document.getElementById('objetivos-list');
+            list.innerHTML = appData.objetivos.map((obj, i) => `
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-start space-x-3">
+                    <span class="bg-montano-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-sm shadow">
+                        ${i + 1}
+                    </span>
+                    <p class="text-gray-700 text-xs md:text-sm italic flex-grow">
+                        ${obj}
+                    </p>
+                </div>
+            `).join('');
+        }
+
+        function renderCompetencias() {
+            const acadList = document.getElementById('competencias-academicas-list');
+            acadList.innerHTML = appData.competencias.academicas.map((c, i) => `
+                <div class="p-3 bg-blue-50/80 rounded-xl border border-blue-100 text-xs md:text-sm text-gray-800">
+                    <b>${i + 1}.</b> <i>${c}</i>
+                </div>
+            `).join('');
+
+            const blandasGrid = document.getElementById('competencias-blandas-grid');
+            blandasGrid.innerHTML = appData.competencias.blandas.map((b) => `
+                <div class="p-2.5 rounded-xl border flex items-center justify-between bg-yellow-100 border-montano-accent font-semibold text-montano-primary shadow-sm">
+                    <span>⭐ <i>${b.name}</i></span>
+                    <span class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-montano-primary text-white">
+                        Priorizada
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function renderIndicadores() {
+            const container = document.getElementById('indicadores-container');
+            container.innerHTML = appData.indicadores.map((bloque, bIdx) => `
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <h3 class="text-sm font-bold text-montano-primary italic mb-3">
+                        ${bloque.titulo}
+                    </h3>
+                    <ul class="space-y-2 text-xs md:text-sm text-gray-700">
+                        ${bloque.items.map((item, iIdx) => `
+                            <li class="flex items-start">
+                                <span class="text-montano-secondary font-bold mr-2">${bIdx + 1}.${iIdx + 1}.</span>
+                                <span class="italic">${item}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        function renderValoresTrabajo() {
+            const grid = document.getElementById('valores-trabajo-grid');
+            grid.innerHTML = appData.valoresTrabajo.map((v, i) => `
+                <div class="p-2 bg-yellow-50 border border-yellow-200 rounded-lg text-gray-800 font-medium italic text-center">
+                    ${i + 1}. ${v}
+                </div>
+            `).join('');
+        }
+
+        function renderBibliografia() {
+            const list = document.getElementById('bibliografia-list');
+            list.innerHTML = appData.bibliografia.map((b) => `
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="italic">• ${b}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderContenidos() {
+            const grid = document.getElementById('sesiones-grid');
+            const unitTitle = document.getElementById('unit-title');
+            
+            const titulosUnidades = [
+                "PRIMERA UNIDAD — Fundamentos y Trazos Técnicos",
+                "SEGUNDA UNIDAD — Construcciones Geométricas y Figuras Planas",
+                "TERCERA UNIDAD — Proyecciones Isométricas y Vistas Ortogonales",
+                "CUARTA UNIDAD — Proyecciones Avanzadas y Vistas Múltiples"
+            ];
+            
+            unitTitle.innerHTML = `<span>📐</span> ${titulosUnidades[activeUnit - 1]}`;
+
+            const sesiones = appData.contenidos[activeUnit] || [];
+
+            grid.innerHTML = sesiones.map((s, idx) => `
+                <div onclick="openModalSession(${idx})" class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-montano-secondary font-bold">Tema ${idx + 1}</span>
+                        </div>
+                        <span class="text-sm font-semibold text-gray-800 block mb-1 italic">${s.name}</span>
+                        <p class="text-[11px] text-gray-500 line-clamp-2">${s.desc || 'Haz clic para consultar...'}</p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-gray-100 flex justify-between items-center text-[10px] text-montano-primary font-bold">
+                        <span>Ver detalle</span>
+                        <span>➡️</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('tab-inactive');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('tab-inactive');
+            activeBtn.classList.add('tab-active');
+        }
+
+        function switchUnit(unitNum) {
+            activeUnit = unitNum;
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById(`unit-btn-${i}`);
+                if (i === unitNum) {
+                    btn.className = "unit-tab px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-montano-primary text-white shadow";
+                } else {
+                    btn.className = "unit-tab px-3.5 py-1.5 rounded-lg text-xs font-bold text-gray-600 hover:text-montano-primary transition";
                 }
+            }
+            renderContenidos();
+        }
+
+        function openModalSession(idx) {
+            const s = appData.contenidos[activeUnit][idx];
+            document.getElementById('modal-title').innerText = `Consulta de Tema ${idx + 1} — Unidad ${activeUnit}`;
+            document.getElementById('modal-view-name').innerText = s.name;
+            document.getElementById('modal-view-desc').innerText = s.desc || 'Sin descripción adicional.';
+            document.getElementById('modal-view-materials').innerText = s.materials || 'Instrumentos de precisión estándar.';
+            document.getElementById('session-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('session-modal').classList.add('hidden');
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => console.log(err));
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
             }
         }
     </script>
